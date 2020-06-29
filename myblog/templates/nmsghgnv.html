@@ -1,0 +1,57 @@
+{#继承母版#}
+{% extends 'base.html' %}
+{% block page-title %}
+    <title>我的博客园</title>
+{% endblock %}
+{% block page-left-content %}
+    <!--文章列表开始-->
+    {% for a in article %}
+        <div class="card text-dark" style="margin-top: 10px">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ a.url }}" target="_blank" style="text-decoration: none;">{{ a.title }}</a>
+                </h5>
+                <div class="card-text collapse show" id="demo1">
+                    <p>{{ a.body|truncatechars:70 }}</p>
+                    <div class="btn-group float-right float-xl-right float-sm-right float-lg-right float-md-right">
+                        <button type="button" class="btn btn-sm" disabled>浏览: <span>{{ a.lang }}</span></button>
+                        <button type="button" class="btn btn-sm"><a href="javascript:;" style="text-decoration: none;">
+                            评论:
+                            <span>23</span> </a></button>
+
+                        <button type="button" class="btn btn-sm" disabled>{{ a.modified_time }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <!--文章列表结束-->
+    {#    分页#}
+    <nav aria-label="Page navigation example" style="margin-top: 10px">
+        <ul class="pagination justify-content-center">
+            {% if article.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="/crawl/nmsghgnv/?page={{ article.previous_page_number }}" tabindex="-1">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link disabled" href="javascript:;" tabindex="-1">Previous</a>
+                </li>
+            {% endif %}
+        {% for num in pageRange %}
+            <li {% if num == currentPage %}class="active page-item"{% endif %}><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endfor %}
+        {% if article.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/crawl/nmsghgnv/?page={{ article.next_page_number }}">Next</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link disabled" href="javascript:;">Next</a>
+            </li>
+        {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}
+

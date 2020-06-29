@@ -1,0 +1,134 @@
+{# 继承母版 #}
+{% extends 'base.html' %}
+{% block page-title %}
+<title>首页-刘飞的个人站点</title>
+{% endblock %}
+{% block page-left-content %}
+    <!--轮播图开始-->
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- 指示符 -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- 轮播图片 -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/static/image/lb01.jpg" style="height: 255px;">
+                <div class="carousel-caption text-dark">
+                    <h3>You can't wait forever. Do something and make it happen.</h3>
+                    <p>你不可能永远等下去。去做点儿什么，让一切成真。</p>
+                </div>
+            </div>
+            <div class="carousel-item  text-dark">
+                <img src="/static/image/lb02.jpg" style="height: 255px;">
+                <div class="carousel-caption">
+                    <h3>The paradox of man is that he desires to be understood, and afraid to be seen.</h3>
+                    <p>人的矛盾总在于，渴望被理解，又害怕被看穿。</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/static/image/lb03.jpg" style="height: 255px;">
+                <div class="carousel-caption">
+                    <p>
+                        遇见了形形色色的人之后，你才知道，原来世界上除了父母不会有人掏心掏肺对你，不会有人无条件完全信任你，也不会有人一直对你好，你早该明白，天会黑、人会变，人生那么长，路那么远，你只能靠自己，别无他选
+                        。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 左右切换按钮 -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+    <!--轮播图结束-->
+    <!--最新动态开始-->
+    <div class="card bg-info text-white " style="margin-top: 10px">
+        <div class="card-body">
+            <h5 class="card-title">热门资讯</h5>
+            <hr>
+            {% for h in article_head %}
+            <p class="card-text">
+{#                <span style="background-color: #00CED1">&nbsp;&nbsp;1&nbsp;&nbsp;</span>#}
+                <a href="/article_detail-{{ h.id }}.html" class="card-link text-dark" target="_blank">&nbsp;{{ h.title }}</a>
+                <button type="button"
+                        class="btn bg-info float-right float-xl-right float-sm-right float-lg-right float-md-right btn-sm"
+                        disabled>{{ h.modified_time.date }}
+                </button>
+            </p>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!--最新动态结束-->
+    <!--文章列表开始-->
+    {% for a in article %}
+        <div class="card text-dark" style="margin-top: 10px">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="/article_detail-{{ a.id }}.html" target="_blank" style="text-decoration: none;">{{ a.title }}</a>
+                </h5>
+                <div class="card-text collapse show" id="demo1">
+                    <p>{{ a.body|truncatechars:70 }}</p>
+                    <div class="btn-group float-right float-xl-right float-sm-right float-lg-right float-md-right">
+                        <button type="button" class="btn btn-sm" disabled>来源: <span>{{ a.source }}</span></button>
+                        <button type="button" class="btn btn-sm"><a href="javascript:;" style="text-decoration: none;">
+                            栏目:
+                            <span>{{ a.sort2_ID }}</span> </a></button>
+
+                        <button type="button" class="btn btn-sm" disabled>{{ a.modified_time.date }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <!--文章列表结束-->
+    {#    分页#}
+    <nav aria-label="Page navigation example" style="margin-top: 10px">
+        <ul class="pagination justify-content-center">
+            {% if article.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="/index/?page={{ article.previous_page_number }}" tabindex="-1">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link disabled" href="javascript:;" tabindex="-1">Previous</a>
+                </li>
+            {% endif %}
+        {% for num in pageRange %}
+            <li {% if num == currentPage %}class="active page-item"{% endif %}><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endfor %}
+        {% if article.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/index/?page={{ article.next_page_number }}">Next</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link disabled" href="javascript:;">Next</a>
+            </li>
+        {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+<!--导航栏开始-->
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
+    <div class="container">
+        <!--<a class="navbar-brand" href="#">导航</a>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                {% if request.path == '/index/' or request.path == '/' %}
+                    <li class="nav-item active">
+                {% endif %}
+                {#                     if(request.path == "/index"){}% class="active"%{}#}
+                <a class="nav-link" href="/index"><b>首页</b></a>
+                </li>
+                <li class="nav-item">
+                    {% if request.path == '/life/' %}
+                        <li class="nav-item active">
+                    {% endif %}
+                    <a class="nav-link" href="/life"><b>励志名言</b></a>
+{#                    <div class="dropdown-menu">#}
+{#                        <a class="dropdown-item" href="/life">生活笔记1</a>#}
+                        {#                        <a class="dropdown-item" href="#">Link 2</a>#}
+                        {#                        <a class="dropdown-item" href="#">Link 3</a>#}
+{#                    </div>#}
+                </li>
+                <li class="nav-item dropdown">
+                    {% if 'crawl' in request.path %}
+                        <li class="nav-item dropdown active">
+                    {% endif %}
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;"><b>网络爬虫</b></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/crawl/nmsghgnv">我的博客园</a>
+                        <a class="dropdown-item" href="/crawl/wangyi">网易新闻</a>
+                        <a class="dropdown-item" href="/crawl/Poetry">诗词名句网</a>
+                        {#                        <a class="dropdown-item" href="#">Link 2</a>#}
+                        {#                        <a class="dropdown-item" href="#">Link 3</a>#}
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+{#                    {% if request.path == '/Poetry/' %}#}
+{#                        <li class="nav-item dropdown active">#}
+{#                    {% endif %}#}
+                    <a class="nav-link  dropdown-toggle disabled" data-toggle="dropdown" href="javascript:;"><b>数据分析</b></a>
+                    <div class="dropdown-menu">
+
+{#                        <a class="dropdown-item" href="#">Link 2</a>#}
+{#                        <a class="dropdown-item" href="#">Link 3</a>#}
+                    </div>
+
+                </li>
+                <li class="nav-item">
+                    {% if request.path == '/about/' %}
+                        <li class="nav-item active">
+                    {% endif %}
+                    <a class="nav-link" href="/about"><b>关于博主</b></a>
+                </li>
+                <li class="nav-item">
+                    {% if request.path == '/message/' %}
+                        <li class="nav-item active">
+                    {% endif %}
+                    <a class="nav-link" href="/message"><b>给我留言</b></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--导航栏结束-->

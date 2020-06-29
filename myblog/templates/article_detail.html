@@ -1,0 +1,87 @@
+{# 继承母版 #}
+{% extends 'base.html' %}
+{% block page-left-content %}
+    <div class="text-dark text-center">
+        <h5>{{ show.title }}</h5>
+    </div>
+    <div class="btn-group float-right float-xl-right float-sm-right float-lg-right float-md-right">
+        <button type="button" class="btn btn-sm" disabled>浏览: <span>456</span></button>
+        <button type="button" class="btn btn-sm"><a href="#bot" style="text-decoration: none;">
+            评论:
+            <span>23</span> </a></button>
+        <button type="button" class="btn btn-sm" disabled>{{ show.modified_time.date }}</button>
+    </div>
+    <br>
+    <div class="text-left">
+        <p>{{ show.body }}</p>
+    </div>
+    <div class="text-center">
+        <img src="/static/image/lb02.jpg" alt="文章图片" title="图片" class="img-fluid">
+    </div>
+    <br>
+    <div>
+        <span class="btn-sm float-left"><a href="javascript:;">上一篇</a></span>
+        <span class="btn-sm float-right"><a href="javascript:;">下一篇</a></span>
+    </div>
+    <br>
+    <hr class="bg-primary">
+    {#    评论#}
+    <h5>评论</h5>
+    <hr>
+    <form action="">
+        <div class="form-group">
+            <label for="name" id="bot">姓名:</label>
+            <input type="text" class="form-control" id="name" placeholder="你的名字">
+        </div>
+        <div class="form-group">
+            <label for="comment">评论内容:</label>
+            <textarea rows="5" class="form-control" id="comment" placeholder="你想说的话"></textarea>
+        </div>
+        <div class="form-check">
+        </div>
+        <button type="submit" class="btn btn-primary float-right float-lg-right float-sm-right float-xl-right">提交评论
+        </button>
+    </form>
+    <br><br><br>
+    <h6 class="text-info"><span>(456)</span>个小伙伴在吐槽</h6>
+    <div class="card" style="margin-top: 10px">
+        <div class="card-body">
+            <h6 class="card-title">小明</h6>
+            <p class="card-text">Some example text. Some example text.</p>
+            <a class="card-link float-md-right float-lg-right float-sm-right float-xl-right float-right disabled">2020-04-26
+                21:37:00</a>
+        </div>
+    </div>
+    <div class="card" style="margin-top: 10px">
+        <div class="card-body">
+            <h6 class="card-title">小明</h6>
+            <p class="card-text">Some example text. Some example text.</p>
+            <a class="card-link float-md-right float-lg-right float-sm-right float-xl-right float-right disabled">2020-04-26
+                21:37:00</a>
+        </div>
+    </div>
+    <div class="card" style="margin-top: 10px">
+        <div class="card-body">
+            <h6 class="card-title">小明</h6>
+            <p class="card-text">Some example text. Some example text.</p>
+            <a class="card-link float-md-right float-lg-right float-sm-right float-xl-right float-right disabled">2020-04-26
+                21:37:00</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

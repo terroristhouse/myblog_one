@@ -1,0 +1,132 @@
+{# 继承母版 #}
+{% extends 'base.html' %}
+{% block page-title %}
+    <title>经典语录</title>
+{% endblock %}
+{% block page-left-content %}
+    <div class="card bg-info text-white" style="margin-top: 10px">
+        <button type="button" class="btn btn-info btn-sm">经典语录--人生若只如初见，何事秋风悲画扇</button>
+    </div>
+    <!--文章列表开始-->
+{#    <div class="card bg-info text-white" style="margin-top: 10px">#}
+{#        <div class="card-body">#}
+{#            <h5 class="card-title">#}
+{#                <button type="button"#}
+{#                        class="btn btn-info btn-sm float-sm-right float-md-right float-lg-right float-xl-right"#}
+{#                        data-toggle="collapse" data-target="#demo1">隐藏文本#}
+{#                </button>#}
+{#            </h5>#}
+{#            <div class="card-text collapse show" id="demo1">#}
+{#                <blockquote class="blockquote">#}
+{#                    <p>不积跬步，无以至千里；不积小流，无以成江海。</p>#}
+{#                    <footer class="blockquote-footer">From <span>劝学</span></footer>#}
+{#                </blockquote>#}
+{#                <div class="btn-group float-right float-xl-right float-sm-right float-lg-right float-md-right">#}
+{#                    <button type="button" class="btn btn-info btn-sm" disabled>置顶度: <span>1000</span>°</button>#}
+{#                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">#}
+{#                        评论:#}
+{#                        <span>23</span></button>#}
+{#                    <button type="button" class="btn btn-info btn-sm" disabled>2020-04-22 5:27</button>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{##}
+{#        </div>#}
+{#    </div>#}
+    {% for a in article %}
+    <div class="card bg-info text-white" style="margin-top: 10px">
+        <div class="card-body">
+            <h5 class="card-title">
+                <button type="button"
+                        class="btn btn-info btn-sm float-sm-right float-md-right float-lg-right float-xl-right"
+                        data-toggle="collapse" data-target="#d{{ a.AUTOADDCLMN }}">隐藏文本
+                </button>
+            </h5>
+            <div class="card-text collapse show" id="d{{ a.AUTOADDCLMN }}">
+                <blockquote class="blockquote">
+                    <p>{{ a.content }}</p>
+                    <footer class="blockquote-footer">From <span>{{ a.source }}</span></footer>
+                </blockquote>
+                <div class="btn-group float-right float-xl-right float-sm-right float-lg-right float-md-right">
+                    <button type="button" class="btn btn-info btn-sm" disabled>置顶度: <span>{{ a.ID }}</span>°</button>
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dd{{ a.AUTOADDCLMN }}">
+                        评论:
+                        <span>23</span></button>
+                    <button type="button" class="btn btn-info btn-sm" disabled>{{ a.publishtime }}</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="dd{{ a.AUTOADDCLMN }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <!--<h4 class="modal-title">评论内容</h4>-->
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <!--提交评论-->
+                    <form>
+                        <div class="form-group">
+                            <label for="usr">姓名:</label>
+                            <input type="text" class="form-control" id="usr" placeholder="你的名字">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">评论:</label>
+                            <textarea class="form-control" rows="5" id="comment"
+                                      placeholder="你想讲的话"></textarea>
+                        </div>
+                        <!--<div class="form-check">-->
+                        <!--<label class="form-check-label">-->
+                        <!--<input class="form-check-input" type="checkbox"> Remember me-->
+                        <!--</label>-->
+                        <!--</div>-->
+                        <button type="submit" class="btn btn-info">提交</button>
+                    </form>
+                    <div class="card bg-info text-white" style="margin-top: 10px">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">评论人姓名</h5>
+                            <p class="card-text">评论内容评论内容评论内容评论内容评论内容</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!--文章列表结束-->
+    {#    分页#}
+    <nav aria-label="Page navigation example" style="margin-top: 10px">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="javascript:;" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="javascript:;">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:;">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:;">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="javascript:;">Next</a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
+
+
+
+
+
+
+
+

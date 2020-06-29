@@ -1,0 +1,45 @@
+{# 继承母版 #}
+{% extends 'base.html' %}
+{% block page-title %}
+    <title>给我留言</title>
+{% endblock %}
+{% block page-left-content %}
+    <h4>给我留言</h4>
+    <hr>
+    <form method="post" onsubmit="return false">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="author">姓名:</label>
+            <input type="text" name="author" class="form-control" maxlength="5" id="author" placeholder="你的名字">
+        </div>
+        <div class="form-group">
+            <label for="comment">留言内容:</label>
+            <textarea rows="5" class="form-control" name="comment" id="comment" placeholder="你想说的话"></textarea>
+        </div>
+        <div class="form-check">
+        </div>
+        <button type="button" id="submit"
+                class="btn btn-primary float-right float-lg-right float-sm-right float-xl-right">提交评论
+        </button>
+    </form>
+    <br><br><br>
+    <h6 class="text-info"><span>({{ comment|length }})</span>个小伙伴在吐槽</h6>
+    {% for c in comment %}
+    <div class="card" style="margin-top: 10px">
+        <div class="card-body">
+            <h6 class="card-title text-info">{{ c.comment_name }}</h6>
+            <p class="card-text">{{ c.comment_content }}</p>
+            <a class="card-link float-md-right float-lg-right float-sm-right float-xl-right float-right disabled">{{ c.create_time }}</a>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
